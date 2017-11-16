@@ -39,4 +39,29 @@ exports.delete = function (req, res) {
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
-}
+};
+
+
+exports.update = function (req, res) {
+   return user
+    .findById(req.params.id)
+    .then(userToBeUpdated => {
+      if (!userToBeUpdated) {
+        return res.status(404).send({
+          message: 'TodoItem Not Found',
+        });
+      }
+
+      return userToBeUpdated
+        .update({
+          username: req.body.username,
+          password: req.body.password,
+          email: req.body.email,
+          photo: req.body.photo
+        })
+        .then(userToBeUpdated => res.status(200).send(userToBeUpdated))
+        .catch(error => res.status(400).send(error));
+    })
+    .catch(error => res.status(400).send(error));
+
+};
