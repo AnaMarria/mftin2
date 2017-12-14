@@ -9,7 +9,22 @@ exports.list = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  res.jsonp(user.create(req.body));
+// return user
+// .findAll({
+//     where: {
+//       username: req.params.username
+//      },
+//   })
+// .then(todoItem => {
+//   if (!todoItem) {
+//     return res.status(404).send({
+//       message: 'TodoItem Not Found',
+//     });
+//   }
+//   return todoItem
+// }).catch(error => res.status(400).send(error));
+
+    res.jsonp(user.create(req.body));
 };
 
 exports.findById = function (req, res) {
@@ -48,7 +63,7 @@ exports.update = function (req, res) {
     .then(userToBeUpdated => {
       if (!userToBeUpdated) {
         return res.status(404).send({
-          message: 'TodoItem Not Found',
+          message: 'User Not Found',
         });
       }
 
