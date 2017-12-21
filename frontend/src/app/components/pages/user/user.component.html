@@ -1,3 +1,9 @@
-<p>
-  user works!
-</p>
+<div class="userContainer">
+    <p-dataTable [value]="users"  selectionMode="single" [(selection)]="selectedUser" [contextMenu]="cm">
+        <p-column field="username" header="Username"  [sortable]="true"></p-column>
+        <p-column field="passsword" header="Password" [sortable]="true"></p-column>
+        <p-column field="email" header="Email" [sortable]="true"></p-column>
+        <p-column field="photo" header="Photo" [sortable]="true"></p-column>
+    </p-dataTable>
+  <p-contextMenu #cm [model]="items"></p-contextMenu>
+</div>
