@@ -18,14 +18,15 @@ export class UserComponent implements OnInit {
       this.users = res;
     });
   }
-  deleteUser(user: User): void {
-    this.apiService
-      .delete(user)
-      .then(() => {
-        this.users = this.users.filter(h => h !== user);
-        if (this.selectedUser === user) { this.selectedUser = null; }
-      });
-  }
+  // deleteUser(user: User): void {
+  //   this.apiService
+  //     .delete(user)
+  //     .then(() => {
+  //       this.users = this.users.filter(h => h !== user);
+  //       if (this.selectedUser === user) { this.selectedUser = null; }
+  //     });
+
+  // }
 }
 
 interface User {

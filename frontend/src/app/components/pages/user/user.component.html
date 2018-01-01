@@ -8,12 +8,12 @@
           <ng-template let-user="rowData" pTemplate="body">
               <button type="button" pButton (click)="showInfo(user)" icon="fa-edit"></button>
           </ng-template>
-      </p-column>
-      <p-column header = "Delete">
-          <ng-template let-user="rowData" pTemplate="body">
-              <button type="button" pButton (click)="deleteBike(user)" icon="fa-remove"></button>
-          </ng-template>
-      </p-column>
+         </p-column>
+         <p-column header = "Delete">
+            <ng-template let-user="rowData" pTemplate="body">
+                <button type="button" pButton (click)="deleteBike(user)" icon="fa-remove"></button>
+            </ng-template>
+          </p-column>
     </p-dataTable>
   <p-contextMenu #cm [model]="items"></p-contextMenu>
 </div>
