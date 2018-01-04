@@ -1,3 +1,15 @@
 <p>
   recipe works!
 </p>
+
+<p-dataTable [value]="recipes"  selectionMode="single" [(selection)]="selectedUser" [contextMenu]="cm">
+  <p-column field="title" header="Title"  [sortable]="true"></p-column>
+  <p-column field="description" header="description" [sortable]="true"></p-column>
+  <p-column field="rating" header="rating" [sortable]="true"></p-column>
+  <p-column field="duration" header="duration"  [sortable]="true"></p-column>
+  <p-column field="difficulty" header="difficulty" [sortable]="true"></p-column>
+  <p-column field="photo" header="photo" [sortable]="true"></p-column>
+  <p-column field="videoLink" header="videoLink" [sortable]="true"></p-column>
+</p-dataTable>
+
+<p-contextMenu #cm [model]="items"></p-contextMenu>
