@@ -22,17 +22,26 @@ export class RecipeComponent implements OnInit {
 
       this.items = [
         { label: 'View', icon: 'fa-search', command: (event) => this.viewRecipe(this.selectedRecipe) },
-        { label: 'Delete', icon: 'fa-close', command: (event) => this.deleteRecipe(this.selectedRecipe) }
+        { label: 'Delete', icon: 'fa-close', command: (event) => this.deleteRecipe(this.selectedRecipe) },
+        { label: 'Edit', icon: 'fa-edit', command: (event) => this.editRecipe(this.selectedRecipe) }
       ];
     }
       viewRecipe(select: Recipe) {
+        alert('Ai accesat reteta: ' + select.title + ' cu timpul de preparare ' + select.duration);
+        console.log(select);
+
+      }
+      editRecipe(select: Recipe) {
         console.log(JSON.stringify(select));
 
       }
       deleteRecipe(select: Recipe) {
+        alert('Reteta ' + select.title + ' a fost stearsa, please refresh the page!');
+
         this.apiService.delete('api/recipe/' + select.id).subscribe(res => {
           console.log(res);
         });
+
     }
   }
 

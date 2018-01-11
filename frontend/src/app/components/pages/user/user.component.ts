@@ -8,25 +8,39 @@ import { MenuItem } from 'primeng/components/common/menuitem';
   styleUrls: ['./user.component.less']
 })
 export class UserComponent implements OnInit {
+
   users: User[];
   selectedUser: User;
+  items: MenuItem[];
 
   constructor(private apiService: ApiService) { }
 
-  ngOnInit() {
-    this.apiService.get('api/user/').subscribe(res => {
-      this.users = res;
-    });
-  }
-  // deleteUser(user: User): void {
-  //   this.apiService
-  //     .delete(user)
-  //     .then(() => {
-  //       this.users = this.users.filter(h => h !== user);
-  //       if (this.selectedUser === user) { this.selectedUser = null; }
-  //     });
+    ngOnInit() {
+      this.apiService.get('api/user/').subscribe(res => {
+        this.users = res;
+      });
 
-  // }
+      this.items = [
+        { label: 'View', icon: 'fa-search', command: (event) => this.viewRecipe(this.selectedUser) },
+        { label: 'Delete', icon: 'fa-close', command: (event) => this.deleteRecipe(this.selectedUser) },
+        { label: 'Edit', icon: 'fa-edit', command: (event) => this.editRecipe(this.selectedUser) }
+      ];
+    }
+      viewRecipe(select: User) {
+        alert('Ai accesat userul cu numele: ' + select.username + ' si adresade email ' + select.email);
+        console.log(select);
+      }
+      editRecipe(select: User) {
+        console.log(JSON.stringify(select));
+
+      }
+      deleteRecipe(select: User) {
+        alert('Utilizatorul ' + select.username + ' a fost sters, please refresh the page!');
+
+        this.apiService.delete('api/user/' + select.id).subscribe(res => {
+          console.log(res);
+        });
+    }
 }
 
 interface User {

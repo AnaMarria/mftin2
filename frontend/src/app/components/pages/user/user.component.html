@@ -4,16 +4,6 @@
         <p-column field="passsword" header="Password" [sortable]="true"></p-column>
         <p-column field="email" header="Email" [sortable]="true"></p-column>
         <p-column field="photo" header="Photo" [sortable]="true"></p-column>
-        <p-column header = "Edit">
-          <ng-template let-user="rowData" pTemplate="body">
-              <button type="button" pButton (click)="showInfo(user)" icon="fa-edit"></button>
-          </ng-template>
-         </p-column>
-         <p-column header = "Delete">
-            <ng-template let-user="rowData" pTemplate="body">
-                <button type="button" pButton (click)="deleteBike(user)" icon="fa-remove"></button>
-            </ng-template>
-          </p-column>
     </p-dataTable>
   <p-contextMenu #cm [model]="items"></p-contextMenu>
 </div>
