@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../service/';
 import { MenuItem } from 'primeng/components/common/menuitem';
+import { ButtonModule } from 'primeng/primeng';
+import { RatingModule } from 'primeng/components/rating/rating';
+import { DialogModule } from 'primeng/components/dialog/dialog';
 
 @Component({
   selector: 'app-user',
@@ -32,7 +35,7 @@ export class UserComponent implements OnInit {
     this.items = [
       { label: 'View', icon: 'fa-search', command: (event) => this.viewUser(this.selectedUser) },
       { label: 'Delete', icon: 'fa-close', command: (event) => this.deleteRecipe(this.selectedUser) },
-      { label: 'Edit', icon: 'fa-edit', command: (event) => this.editRecipe(this.selectedUser) }
+      { label: 'Edit', icon: 'fa-edit', command: (event) => this.editUser(this.selectedUser) }
     ];
   }
   viewUser(select: User) {
@@ -55,17 +58,17 @@ export class UserComponent implements OnInit {
     this.edit = false;
     this.newUser = new User('', '', '');
   }
-  editRecipe(select: User) {
+  editUser(select: User) {
     console.log(JSON.stringify(select));
   }
-  editUserDialog() {
+  showDialogToEditUser() {
     this.edit = true;
     this.displayUserDialog = true;
     this.newUser = new User(this.selectedUser.username,
                             this.selectedUser.password,
                             this.selectedUser.email);
     this.newUser.id = this.selectedUser.id;
-    }
+  }
   deleteRecipe(select: User) {
     alert('Utilizatorul ' + select.username + ' a fost sters, please refresh the page!');
 

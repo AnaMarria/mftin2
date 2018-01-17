@@ -1,3 +1,4 @@
+<h2>User</h2>
 <div class="userContainer">
     <p-dataTable [value]="users"  selectionMode="single" [(selection)]="selectedUser" [contextMenu]="cm">
         <p-column field="username" header="Username"  [sortable]="true"></p-column>
@@ -8,11 +9,12 @@
   <ng-template pTemplate="summary" let-rowData>
     <div class="buttonContent">
         <button type="button" pButton icon="fa-plus" (click)="showDialogToAddUser()" label="Add user"></button>
+        <button type="button" pButton icon="fa-edit" (click)="showDialogToEditUser()" label="Edit user"></button>
     </div>
   </ng-template>
   <p-dialog header="User Details" [(visible)]="displayUserDialog" [responsive]="true" showEffect="fade"
     [modal]="true" class="userDialog">
-      <div class="ui-g ui-fluid" *ngIf="user">
+      <div class="ui-g ui-fluid">
         <div class="ui-g-12">
           <div class="ui-g-4">
             <label for="username">Username</label>
