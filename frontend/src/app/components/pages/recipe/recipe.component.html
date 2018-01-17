@@ -2,14 +2,48 @@
   recipe works!
 </p>
 
+<div>
 <p-dataTable [value]="recipes"  selectionMode="single" [(selection)]="selectedRecipe" [contextMenu]="cm">
   <p-column field="title" header="Title"  [sortable]="true"></p-column>
   <p-column field="description" header="description" [sortable]="true"></p-column>
-  <p-column field="rating" header="rating" [sortable]="true"></p-column>
+  <p-column field="rating" header="rating" [sortable]="true"> </p-column>
   <p-column field="duration" header="duration"  [sortable]="true"></p-column>
   <p-column field="difficulty" header="difficulty" [sortable]="true"></p-column>
   <p-column field="photo" header="photo" [sortable]="true"></p-column>
   <p-column field="videoLink" header="videoLink" [sortable]="true"></p-column>
 </p-dataTable>
-
 <p-contextMenu #cm [model]="items"></p-contextMenu>
+</div>
+
+
+<button type="button" (click)="showDialog()" pButton icon="fa-plus" label="Add"></button>
+
+  <p-dialog [(visible)]="display">
+    <h3>Recipe</h3>
+              <span class="ui-float-label">
+                <input type="text" [(ngModel)]="newRecipe.title" pInputText>
+                <label for="float-input">Title</label>
+              </span>
+              <br>
+              <span class="ui-float-label">
+                  <input type="text" [(ngModel)]="newRecipe.description" pInputText>
+                  <label for="float-input">Description</label>
+              </span>
+              Rating <p-rating  [(ngModel)]="newRecipe.rating"></p-rating><br>
+              <span class="ui-float-label">
+                  <input type="text" [(ngModel)]="newRecipe.duration" pInputText>
+                  <label for="float-input">Duration</label>
+              </span>
+              Difficulty <p-rating  [(ngModel)]="newRecipe.difficulty"></p-rating><br>
+
+              <span class="ui-float-label">
+                  <input type="text" [(ngModel)]="newRecipe.videoLink" pInputText>
+                  <label for="float-input">Video Link</label>
+              </span>
+
+          <p-footer>
+              <button type="button" pButton icon="fa-check" (click)="onAdd()" label="Done"></button>
+              <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancel"></button>
+          </p-footer>
+  </p-dialog>
+

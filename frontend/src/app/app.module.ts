@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // UI
 import { SuiModule } from 'ng2-semantic-ui';
-import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { DataTableModule, SharedModule, DialogModule, RatingModule, DataGridModule } from 'primeng/primeng';
 
 // Services
 import { ApiService } from './service';
@@ -52,6 +52,8 @@ import { RecipeComponent } from './components/pages/recipe/recipe.component';
     ButtonModule,
     InputTextModule,
     ContextMenuModule,
+    RatingModule,
+    DialogModule
   ],
   providers: [
     AppRoutingModule,
