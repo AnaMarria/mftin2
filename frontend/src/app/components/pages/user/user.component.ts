@@ -35,14 +35,19 @@ export class UserComponent implements OnInit {
       { label: 'Edit', icon: 'fa-edit', command: (event) => this.editRecipe(this.selectedUser) }
     ];
   }
+  viewUser(select: User) {
+    alert('Ai accesat user-ul cu numele: ' + select.username + ' si adresa de email ' + select.email);
+    console.log(select);
+  }
   showDialogToAddUser() {
     this.displayUserDialog = true;
     this.add = true;
   }
-  save() {
+  saveUser() {
     if ( this.add === true ) {
-      this.apiService.post('api/recipe', this.newUser).subscribe();
+      this.apiService.post('api/user', this.newUser).subscribe();
     } else {
+      this.apiService.put('api/user/' + this.newUser.id, this.newUser).subscribe();
       console.log(JSON.stringify(this.newUser));
     }
     this.displayUserDialog = false;
@@ -50,19 +55,26 @@ export class UserComponent implements OnInit {
     this.edit = false;
     this.newUser = new User('', '', '');
   }
-  viewUser(select: User) {
-    alert('Ai accesat userul cu numele: ' + select.username + ' si adresade email ' + select.email);
-    console.log(select);
-  }
   editRecipe(select: User) {
     console.log(JSON.stringify(select));
   }
+  editUserDialog() {
+    this.edit = true;
+    this.displayUserDialog = true;
+    this.newUser = new User(this.selectedUser.username,
+                            this.selectedUser.password,
+                            this.selectedUser.email);
+    this.newUser.id = this.selectedUser.id;
+    }
   deleteRecipe(select: User) {
     alert('Utilizatorul ' + select.username + ' a fost sters, please refresh the page!');
 
     this.apiService.delete('api/user/' + select.id).subscribe(res => {
       console.log(res);
     });
+  }
+  close() {
+    this.displayUserDialog = false;
   }
 }
 
