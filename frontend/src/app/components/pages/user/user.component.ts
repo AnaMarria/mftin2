@@ -12,7 +12,10 @@ export class UserComponent implements OnInit {
   users: User[];
   selectedUser: User;
   items: MenuItem[];
-  newUser:User = new User('','','');
+  newUser: User = new User('','','');
+  displayUserDialog: boolean;
+  // user: User = {};
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -22,16 +25,16 @@ export class UserComponent implements OnInit {
     });
 
     this.items = [
-      { label: 'View2', icon: 'fa-search', command: (event) => this.viewRecipe2(this.selectedUser) },
-
       { label: 'View', icon: 'fa-search', command: (event) => this.viewRecipe(this.selectedUser) },
       { label: 'Delete', icon: 'fa-close', command: (event) => this.deleteRecipe(this.selectedUser) },
       { label: 'Edit', icon: 'fa-edit', command: (event) => this.editRecipe(this.selectedUser) }
     ];
   }
-  viewRecipe2(select: User) {
-     this.apiService.post('api/user',this.newUser).subscribe();
-
+  showDialogToAddUser() {
+    // incearca sa decomentezi putin astea
+    // this.newUser = true;
+    // this.user = {};
+    this.displayUserDialog = true;
   }
   viewRecipe(select: User) {
     alert('Ai accesat userul cu numele: ' + select.username + ' si adresade email ' + select.email);
