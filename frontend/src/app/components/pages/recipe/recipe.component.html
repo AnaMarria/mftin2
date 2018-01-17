@@ -15,7 +15,6 @@
 <p-contextMenu #cm [model]="items"></p-contextMenu>
 </div>
 
-
 <button type="button" (click)="showDialog()" pButton icon="fa-plus" label="Add"></button>
 
   <p-dialog [(visible)]="display">
@@ -47,3 +46,4 @@
           </p-footer>
   </p-dialog>
 
+  <button type="button" (click)="showEdit()" pButton icon="fa-edit" label="Edit"></button>

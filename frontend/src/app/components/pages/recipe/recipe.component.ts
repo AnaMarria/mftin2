@@ -58,7 +58,7 @@ export class RecipeComponent implements OnInit {
       if ( this.add === true ) {
         this.apiService.post('api/recipe', this.newRecipe).subscribe();
       } else {
-        console.log(JSON.stringify(this.newRecipe));
+        this.apiService.put('api/recipe/' + this.newRecipe.id, this.newRecipe).subscribe();
       }
       this.display = false;
       this.add = false;
@@ -73,7 +73,13 @@ export class RecipeComponent implements OnInit {
     showEdit() {
     this.edit = true;
     this.display = true;
-    this.newRecipe = this.selectedRecipe;
+    this.newRecipe = new Recipe(this.selectedRecipe.title,
+                                this.selectedRecipe.description,
+                                this.selectedRecipe.rating,
+                                this.selectedRecipe.duration,
+                                this.selectedRecipe.difficulty,
+                                this.selectedRecipe.videoLink);
+    this.newRecipe.id = this.selectedRecipe.id;
     }
 
   }
