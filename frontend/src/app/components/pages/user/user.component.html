@@ -6,5 +6,54 @@
         <p-column field="photo" header="Photo" [sortable]="true"></p-column>
     </p-dataTable>
   <p-contextMenu #cm [model]="items"></p-contextMenu>
+  <ng-template pTemplate="summary" let-rowData>
+    <div class="buttonContent">
+        <button type="button" pButton icon="fa-plus" (click)="showDialogToAddUser()" label="Add user"></button>
+    </div>
+  </ng-template>
+  <p-dialog header="User Details" [(visible)]="displayUserDialog" [responsive]="true" showEffect="fade"
+    [modal]="true" [width]="300">
+      <div class="ui-g ui-fluid" *ngIf="user">
+        <div class="ui-g-12">
+          <div class="ui-g-4">
+            <label for="username">Username</label>
+          </div>
+          <div class="ui-g-8">
+            <input pInputText [(ngModel)]="newUser.username"/>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-4">
+            <label for="password">Password</label>
+          </div>
+          <div class="ui-g-8">
+            <input pInputText [(ngModel)]="newUser.password"/>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-4">
+            <label for="email">Email</label>
+          </div>
+          <div class="ui-g-8">
+            <input pInputText [(ngModel)]="newUser.email"/>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-4">
+            <label for="photo">Photo</label>
+          </div>
+          <div class="ui-g-8">
+            <input pInputText [(ngModel)]="newUser.photo"/>
+          </div>
+        </div>
+      </div>
+      <p-footer>
+        <div class="ui-dialog-buttonpae ui-helper-clearfix">
+          <button type="button" pButton icon="fa-close" (click)="close()" label="Close"></button>
+          <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+      </p-footer>
+
+  </p-dialog>
 </div>
-<div class="ui-grid-col-8"><input pInputText [(ngModel)]="newUser.username" /></div>
+
