@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
   users: User[];
   selectedUser: User;
   items: MenuItem[];
-  newUser: User = new User('','','');
+  // newUser: User = new User('','','');
   displayUserDialog: boolean;
   // user: User = {};
 
