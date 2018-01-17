@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ApiService } from '../../../service/';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { ButtonModule } from 'primeng/primeng';
-import { RatingModule } from 'primeng/components/rating/rating';
 import { DialogModule } from 'primeng/components/dialog/dialog';
 
 @Component({
