@@ -6,12 +6,10 @@
         <p-column field="email" header="Email" [sortable]="true"></p-column>
     </p-dataTable>
   <p-contextMenu #cm [model]="items"></p-contextMenu>
-  <ng-template pTemplate="summary" let-rowData>
-    <div class="buttonContent">
-        <button type="button" pButton icon="fa-plus" (click)="showDialogToAddUser()" label="Add user"></button>
-        <button type="button" pButton icon="fa-edit" (click)="showDialogToEditUser()" label="Edit user"></button>
-    </div>
-  </ng-template>
+  <div class="buttonContent">
+      <button type="button" pButton icon="fa-plus" (click)="showDialogToAddUser()" label="Add user"></button>
+      <button type="button" pButton icon="fa-edit" (click)="showDialogToEditUser()" label="Edit user"></button>
+  </div>
   <p-dialog header="User Details" [(visible)]="displayUserDialog" [responsive]="true" showEffect="fade"
     [modal]="true" class="userDialog">
       <div class="ui-g ui-fluid">
