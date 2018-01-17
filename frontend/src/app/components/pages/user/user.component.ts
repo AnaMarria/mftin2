@@ -12,11 +12,16 @@ export class UserComponent implements OnInit {
   users: User[];
   selectedUser: User;
   items: MenuItem[];
-  // newUser: User = new User('','','');
+  newUser: User = new User('', '', '');
   displayUserDialog: boolean;
-  // user: User = {};
+  add: boolean;
+  edit: boolean;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+    this.displayUserDialog = false;
+    this.edit = false;
+    this.add = false;
+   }
 
   ngOnInit() {
 
@@ -25,24 +30,32 @@ export class UserComponent implements OnInit {
     });
 
     this.items = [
-      { label: 'View', icon: 'fa-search', command: (event) => this.viewRecipe(this.selectedUser) },
+      { label: 'View', icon: 'fa-search', command: (event) => this.viewUser(this.selectedUser) },
       { label: 'Delete', icon: 'fa-close', command: (event) => this.deleteRecipe(this.selectedUser) },
       { label: 'Edit', icon: 'fa-edit', command: (event) => this.editRecipe(this.selectedUser) }
     ];
   }
   showDialogToAddUser() {
-    // incearca sa decomentezi putin astea
-    // this.newUser = true;
-    // this.user = {};
     this.displayUserDialog = true;
+    this.add = true;
   }
-  viewRecipe(select: User) {
+  save() {
+    if ( this.add === true ) {
+      this.apiService.post('api/recipe', this.newUser).subscribe();
+    } else {
+      console.log(JSON.stringify(this.newUser));
+    }
+    this.displayUserDialog = false;
+    this.add = false;
+    this.edit = false;
+    this.newUser = new User('', '', '');
+  }
+  viewUser(select: User) {
     alert('Ai accesat userul cu numele: ' + select.username + ' si adresade email ' + select.email);
     console.log(select);
   }
   editRecipe(select: User) {
     console.log(JSON.stringify(select));
-
   }
   deleteRecipe(select: User) {
     alert('Utilizatorul ' + select.username + ' a fost sters, please refresh the page!');
