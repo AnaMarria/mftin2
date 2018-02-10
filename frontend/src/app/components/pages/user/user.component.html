@@ -10,8 +10,7 @@
       <button type="button" pButton icon="fa-plus" (click)="showDialogToAddUser()" label="Add user"></button>
       <button type="button" pButton icon="fa-edit" (click)="showDialogToEditUser()" label="Edit user"></button>
   </div>
-  <p-dialog header="User Details" [(visible)]="displayUserDialog" [responsive]="true" showEffect="fade"
-    [modal]="true" class="userDialog">
+  <p-dialog header="User Details" [(visible)]="displayUserDialog" class="userDialog">
       <div class="ui-g ui-fluid">
         <div class="ui-g-12">
           <div class="ui-g-4">

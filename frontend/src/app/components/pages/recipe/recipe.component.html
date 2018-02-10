@@ -1,12 +1,13 @@
-<p>
-  recipe works!
-</p>
-
+<h1>Recipe</h1>
 <div>
 <p-dataTable [value]="recipes"  selectionMode="single" [(selection)]="selectedRecipe" [contextMenu]="cm">
   <p-column field="title" header="Title"  [sortable]="true"></p-column>
   <p-column field="description" header="description" [sortable]="true"></p-column>
-  <p-column field="rating" header="rating" [sortable]="true"> </p-column>
+  <p-column field="rating" header="rating" [sortable]="true">
+      <ng-template let-col let-rating="rowData" pTemplate="body">
+          <p-rating readonly="true" [(ngModel)]="rating[col.field]"></p-rating>
+      </ng-template>
+     </p-column>
   <p-column field="duration" header="duration"  [sortable]="true"></p-column>
   <p-column field="difficulty" header="difficulty" [sortable]="true"></p-column>
   <p-column field="photo" header="photo" [sortable]="true"></p-column>

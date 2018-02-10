@@ -19,33 +19,28 @@ export class RecipeComponent implements OnInit {
   display: boolean;
   edit: boolean;
   add: boolean;
-
+  photo: string;
   constructor(private apiService: ApiService) {
     this.display = false;
     this.edit = false;
     this.add = false;
+    this.photo = '.\Recipes.jpg';
   }
 
     ngOnInit() {
+     this.init();
+    }
+    init() {
+
       this.apiService.get('api/recipe/').subscribe(res => {
         this.recipes = res;
-      });
+        });
 
       this.items = [
-        { label: 'View', icon: 'fa-search', command: (event) => this.viewRecipe(this.selectedRecipe) },
         { label: 'Delete', icon: 'fa-close', command: (event) => this.deleteRecipe(this.selectedRecipe) },
-        { label: 'Edit', icon: 'fa-edit', command: (event) => this.editRecipe(this.selectedRecipe) }
       ];
     }
-      viewRecipe(select: Recipe) {
-        alert('Ai accesat reteta: ' + select.title + ' cu timpul de preparare ' + select.duration);
-        console.log(select);
 
-      }
-      editRecipe(select: Recipe) {
-        console.log(JSON.stringify(select));
-
-      }
       deleteRecipe(select: Recipe) {
         alert('Reteta ' + select.title + ' a fost stearsa, please refresh the page!');
 
@@ -57,6 +52,7 @@ export class RecipeComponent implements OnInit {
     onAdd() {
       if ( this.add === true ) {
         this.apiService.post('api/recipe', this.newRecipe).subscribe();
+
       } else {
         this.apiService.put('api/recipe/' + this.newRecipe.id, this.newRecipe).subscribe();
       }
